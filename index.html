@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN - PukiDirect</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/VY8nC6Gg/ezgif-2dc42c07db9fc9.png" />	
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f3f4f6;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 10vh;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="login-container bg-white rounded-lg shadow-md p-8">
+        <div class="text-center mb-8">
+			<body>
+    <div class="container mt-4 content-container" style="max-width: 600px;">
+        <div class="card">
+            <div class="card-header text-center">
+		    <div style="text-align: center;">
+<span style="font-size: x-large;">
+<marquee bgcolor="#FFFFFF" style="color: 	#000000" direction="left" width="150">
+<b>&lt;&lt;</b><b> ADMIN PANEL &gt;&gt;</b>
+</marquee>
+<marquee bgcolor="#FFFFFF" style="color: 	#000000" direction="right" width="150">
+<b>&lt;&lt; ADMIN PANEL &gt;&gt;</b>
+
+</marquee>
+        </div>
+        
+        <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4"></div>
+        
+        <form id="loginForm" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                <input type="password" id="password" required 
+                       class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <button type="submit" 
+                    class="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                Login
+            </button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const passwordInput = document.getElementById('password');
+            const password = passwordInput.value.trim();
+            const errorElement = document.getElementById('errorMessage');
+            
+            // Reset error message
+            errorElement.classList.add('hidden');
+            
+            // Validasi input
+            if (!password) {
+                showError('Harap masukkan password!');
+                passwordInput.focus();
+                return;
+            }
+            
+            // Password yang ditentukan (harus diganti di production)
+            const correctPassword = "pukimak212"; 
+            
+            if (password === correctPassword) {
+                // Set cookie dengan HttpOnly dan Secure (untuk production)
+                document.cookie = "auth=true; path=/; max-age=86400; SameSite=Strict";
+                window.location.href = 'https://pukimakxcreww.vercel.app/';
+            } else {
+                showError('Password salah! Silakan coba lagi.');
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        });
+
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            errorElement.textContent = message;
+            errorElement.classList.remove('hidden');
+        }
+    </script>
+	
+			<footer style="text-align: center; padding: 10px; background-color: #ffffff; margin-top: 10px; font-size: 14px; color: #555;">
+		<p>&copy; 2025 PUKIMAK - Learn To Be Better</p>
+    </footer>
+</body>
+
+</html>
